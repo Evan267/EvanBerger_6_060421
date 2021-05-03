@@ -11,8 +11,6 @@ mongoose.connect('mongodb+srv://Evan:2awpX8gjSazL7T6F@cluster0.oyxua.mongodb.net
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(error => console.log('Error :' + error));
 
-mongoose.set('useFindAndModify', false);
-
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
