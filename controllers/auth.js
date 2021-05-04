@@ -2,6 +2,7 @@ const User = require('../models/User');
 
 const bcrypt = require('bcrypt');
 const jwt =  require('jsonwebtoken');
+const cryptoJS = require('crypto-js');
 
 exports.signUp = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
@@ -32,7 +33,7 @@ exports.logIn = (req, res, next) => {
                         userId: user._id,
                         token: jwt.sign(
                             { userId: user._id },
-                            'RANDOM_TOKEN_SECRET',
+                            'Vh73yPzc92eZ79JKYpQ8YFgC7TV0DQtW5VoorINDld8HhEk7zEty2mqnEsi8NoY9O',
                             {expiresIn: '24h'}
                         )
                     });

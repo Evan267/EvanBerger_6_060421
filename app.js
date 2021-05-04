@@ -2,14 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const helmet = require('helmet');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 
-mongoose.connect('mongodb+srv://Evan:2awpX8gjSazL7T6F@cluster0.oyxua.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@cluster0.oyxua.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(error => console.log('Error :' + error));
+
+app.use(helmet());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
